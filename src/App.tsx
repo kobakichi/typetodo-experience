@@ -49,6 +49,18 @@ function App() {
     setTodos(newTodos);
   };
 
+  // チェックボックスの処理
+  const handleChecked = (id: number, checked: boolean) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.checked = !checked;
+      }
+      return todo;
+    });
+
+    setTodos(newTodos);
+  };
+
   return (
     <div className="wrapper">
       <h2>TypeScript TodoApp</h2>
@@ -68,6 +80,11 @@ function App() {
               type="text"
               value={todo.inputValue}
               onChange={(e) => handleEdit(todo.id, e.target.value)}
+              disabled={todo.checked}
+            />
+            <input
+              type="checkbox"
+              onChange={() => handleChecked(todo.id, todo.checked)}
             />
           </li>
         ))}
