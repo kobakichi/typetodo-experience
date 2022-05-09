@@ -36,6 +36,19 @@ function App() {
     setInputValue("");
   };
 
+  // タスクを編集する関数
+  const handleEdit = (id: number, inputValue: string) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.inputValue = inputValue;
+      }
+      // ここでreturnを返さないとエラーが吐かれる
+      return todo;
+    });
+
+    setTodos(newTodos);
+  };
+
   return (
     <div className="wrapper">
       <h2>TypeScript TodoApp</h2>
@@ -48,6 +61,17 @@ function App() {
         />
         <button type="submit">新規作成</button>
       </form>
+      <ul>
+        {todos.map((todo) => (
+          <li key={todo.id}>
+            <input
+              type="text"
+              value={todo.inputValue}
+              onChange={(e) => handleEdit(todo.id, e.target.value)}
+            />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
