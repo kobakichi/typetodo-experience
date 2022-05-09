@@ -40,8 +40,13 @@ function App() {
     <div className="wrapper">
       <h2>TypeScript TodoApp</h2>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" onChange={(e) => handleChange(e)} />
-        <input type="submit" value="作成" />
+        <input
+          type="text"
+          value={inputValue}
+          placeholder="タスクを入力"
+          onChange={handleChange}
+        />
+        <button type="submit">新規作成</button>
       </form>
     </div>
   );
