@@ -6,3 +6,7 @@ body {
   width: 50%;
   margin: 80px auto;
 }
+
+ul {
+  list-style: none;
+}
