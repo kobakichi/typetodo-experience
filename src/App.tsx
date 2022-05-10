@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function App() {
+export const App = () => {
   // inputformからの入力を受け取るstate
   const [inputValue, setInputValue] = useState("");
 
@@ -61,6 +61,11 @@ function App() {
     setTodos(newTodos);
   };
 
+  const handleDelete = (id: number) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="wrapper">
       <h2>TypeScript TodoApp</h2>
@@ -71,7 +76,7 @@ function App() {
           placeholder="タスクを入力"
           onChange={handleChange}
         />
-        <button type="submit">新規作成</button>
+        <button type="submit">作成</button>
       </form>
       <ul>
         {todos.map((todo) => (
@@ -86,11 +91,12 @@ function App() {
               type="checkbox"
               onChange={() => handleChecked(todo.id, todo.checked)}
             />
+            <button onClick={() => handleDelete(todo.id)}>消去</button>
           </li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default App;
